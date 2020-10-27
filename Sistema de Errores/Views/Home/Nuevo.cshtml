@@ -1,0 +1,22 @@
+﻿@model Sistema_de_Errores.Models.Defectos
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>Nuevo</h2>
+
+<form method="post" action="~/Home/Nuevo">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(a => a.sucursal)
+            @Html.TextBoxFor(a => a.sucursal, new { @class = "form-control" })
+            @Html.LabelFor(a => a.supervisor)
+            @Html.TextBoxFor(a => a.supervisor, new { @class = "form-control" })
+            @Html.LabelFor(a => a.categoria)
+            @Html.TextBoxFor(a => a.categoria, new { @class = "form-control" })
+        </div>
+        <div>
+            <input value ="Guardar" class="btn btn-primary" type="submit">
+        </div>
+    </div>
+</form>

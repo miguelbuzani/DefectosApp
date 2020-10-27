@@ -1,0 +1,29 @@
+﻿@model List<Sistema_de_Errores.Models.Defectos>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<a href="~/Home/Nuevo" class="btn btn-primary btn-lg btn-block">Nuevo</a>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Sucursal</th>
+            <th>Supervisor</th>
+            <th>Categoria</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+        </tr>
+
+        @foreach (var defecto in Model)
+        {
+            <tr>
+                <th>@defecto.sucursal</th>
+                <th>@defecto.supervisor</th>
+                <th>@defecto.categoria</th>
+                <th>@defecto.fecha</th>
+                <th>@defecto.hora</th>
+            </tr>
+        }
+
+    </table>
+</div>
