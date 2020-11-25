@@ -1,3 +1,17 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var pageName = ViewContext.RouteData.Values["action"].ToString();
+    switch (pageName)
+    {
+        case "Index":
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+        default:
+            //Admin layout  
+            Layout = "~/Views/Shared/_ILayout.cshtml";
+            break;
+    }
+
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_ILayout.cshtml";
 }

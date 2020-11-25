@@ -9,7 +9,34 @@ namespace Sistema_de_Errores.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(string User, string Pass)
+        {
+            using (SistemadeDefectosEntitiesUsr db = new SistemadeDefectosEntitiesUsr())
+            {
+                var user = db.Users.FirstOrDefault(a => a.name == User && a.pass == Pass);
+
+                if (user != null)
+                {
+                    Session["Users"] = user;
+                    
+                    return Redirect("~/Home/Errores");
+                }
+                else
+                {
+                    return View();
+                }
+                
+            } 
+        }
+
+        public ActionResult Errores()
         {
             List<Defectos> lista = new List<Defectos>();
             using (SistemadeDefectosEntities db = new SistemadeDefectosEntities())
@@ -61,7 +88,7 @@ namespace Sistema_de_Errores.Controllers
                         db.Defectos.Add(tempDefecto);
                         db.SaveChanges();
                     }
-                    return Redirect("~/Home/Index");
+                    return Redirect("~/Home/Errores");
                 }
 
             }catch(Exception e)

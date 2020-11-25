@@ -1,29 +1,17 @@
-﻿@model List<Sistema_de_Errores.Models.Defectos>
-
+﻿
 @{
     ViewBag.Title = "Home Page";
+    DateTime wea = DateTime.Now;
 }
-<a href="~/Home/Nuevo" class="btn btn-primary btn-lg btn-block">Nuevo</a>
-<div class="table-responsive">
-    <table class="table">
-        <tr>
-            <th>Sucursal</th>
-            <th>Supervisor</th>
-            <th>Categoria</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-        </tr>
 
-        @foreach (var defecto in Model)
-        {
-            <tr>
-                <th>@defecto.sucursal</th>
-                <th>@defecto.supervisor</th>
-                <th>@defecto.categoria</th>
-                <th>@defecto.fecha</th>
-                <th>@defecto.hora</th>
-            </tr>
-        }
 
-    </table>
-</div>
+<form method="post" class="form-signin">
+    <img class="mb-4" src="~/1591051000625.gif" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label class="sr-only">Usuario</label>
+    <input name="User" placeholder="Usuario" class="form-control" required    autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input name="Pass" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; @wea.Year</p>
+</form>

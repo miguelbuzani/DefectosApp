@@ -16,6 +16,20 @@ namespace Sistema_de_Errores
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Application["UserSessions"] = 0;
+
+
+        }
+
+        void Session_Start(object sender, EventArgs e)
+        {
+            Application["UserSessions"] = (int)Application["UserSessions"] + 1;
+        }
+
+        void Session_End(object sender, EventArgs e)
+        {
+            Application["UserSessions"] = (int)Application["UserSessions"] - 1;
         }
     }
 }
