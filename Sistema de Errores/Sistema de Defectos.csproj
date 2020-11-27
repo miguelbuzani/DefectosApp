@@ -168,6 +168,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EUsuarios.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GData.cs" />
     <Compile Include="Models\Users.cs">
       <DependentUpon>EUsuarios.tt</DependentUpon>
     </Compile>
@@ -350,6 +351,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\Graficas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

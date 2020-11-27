@@ -97,5 +97,27 @@ namespace Sistema_de_Errores.Controllers
             }
             return View();
         }
+
+        public ActionResult Graficas()
+        {
+
+            List<Defectos> lista = new List<Defectos>();
+
+            using (SistemadeDefectosEntities db = new SistemadeDefectosEntities())
+            {
+                lista = db.Defectos.OrderBy(a => a.sucursal).ToList();
+                
+            }
+            var wea = lista.GroupBy(def => def.fecha, def => def.fecha, (baseDateE, dateE) => new
+            {
+                Key = baseDateE,
+                total = dateE.Count()
+            }).Select(x => new GData() {
+                fecha = x.Key,
+                total = x.total
+            }).ToList();
+
+            return View(wea);
+        }
     }
 }

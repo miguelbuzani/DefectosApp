@@ -1,0 +1,106 @@
+﻿@model List<Sistema_de_Errores.Models.GData>
+@{
+    ViewBag.Title = "Graficas";
+}
+
+<!-- Grafica -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+        // Load the Visualization API and the controls package.
+        google.charts.load('current', { 'packages': ['corechart', 'controls'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawDashboard);
+
+        // Callback that creates and populates a data table,
+        // instantiates a dashboard, a range slider and a pie chart,
+        // passes in the data and draws it.
+    function drawDashboard() {
+
+        // Create our data table.
+
+
+        //var model = '@Html.Raw(Json.Encode(Model))';
+        //var data = JSON.parse(model);
+        //var dataG = [[],[]];
+
+        //for (var i = 0; i < data.length; i++) {
+        //    var toG = data[i];
+        //    dataG[i][0] = new Date(parseInt(toG.fecha.replace(/\/Date\((.*?)\)\//gi, "$1"))).toString();
+        //    dataG[i][1] = toG.total.toString();
+        //}
+        //window.alert(typeof (data[0].total) + " " +typeof (dataG[0,1].total));
+
+        //----------------------------------------------------------------------------
+
+        var dataG = [];
+
+        dataG.push(['Fecha','Cantidad']);
+        @foreach(var errG in Model)
+        {
+            @:dataG.push(['@errG.fecha', parseInt(@errG.total)]);
+        }
+
+        var data = google.visualization.arrayToDataTable(dataG);
+
+        // Create a dashboard.
+        var dashboard = new google.visualization.Dashboard(
+            document.getElementById('dashboard_div'));
+
+        // Create a range slider, passing some options
+        var donutRangeSlider = new google.visualization.ControlWrapper({
+            'controlType': 'NumberRangeFilter',
+            'containerId': 'filter_div',
+            'options': {
+                'filterColumnLabel': 'Cantidad'
+            }
+        });
+
+        // Create a pie chart, passing some options
+        var pieChart = new google.visualization.ChartWrapper({
+            'chartType': 'PieChart',
+            'containerId': 'chart_div',
+            'options': {
+                'width': 300,
+                'height': 300,
+                'pieSliceText': 'value',
+                'legend': 'right'
+            }
+        });
+
+        // Establish dependencies, declaring that 'filter' drives 'pieChart',
+        // so that the pie chart will only display entries that are let through
+        // given the chosen slider range.
+        dashboard.bind(donutRangeSlider, pieChart);
+
+        // Draw the dashboard.
+        dashboard.draw(data);
+    }
+</script>
+<!-- Grafica -->
+
+<h2>Graficas</h2>
+
+<div id="dashboard_div">
+    <!--Divs that will hold each control and chart-->
+    <div id="filter_div"></div>
+    <div id="chart_div"></div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <tr class="thead-light">
+            <th>Fecha</th>
+            <th>Cantidad</th>
+        </tr>
+
+        @foreach (var defecto in Model)
+        {
+            <tr>
+                <th>@defecto.fecha</th>
+                <th>@defecto.total</th>
+            </tr>
+        }
+
+    </table>
+</div>
