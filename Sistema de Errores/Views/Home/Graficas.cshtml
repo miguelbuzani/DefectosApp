@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
         // Load the Visualization API and the controls package.
-        google.charts.load('current', { 'packages': ['corechart', 'controls'] });
+        google.charts.load('current', { 'packages': ['corechart', 'controls', 'line'] });
 
         // Set a callback to run when the Google Visualization API is loaded.
         google.charts.setOnLoadCallback(drawDashboard);
@@ -36,57 +36,61 @@
 
         var dataG = [];
 
-        dataG.push(['Fecha','Cantidad']);
+        //dataG.push(['Cantidad','Fecha']);
+
+        var button = document.getElementById('change-chart');
+        var chartDiv = document.getElementById('chart_div');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Month');
+        data.addColumn('number', "Average Temperature");
+
         @foreach(var errG in Model)
         {
-            @:dataG.push(['@errG.fecha', parseInt(@errG.total)]);
+            @:var date = '@errG.fecha';
+            @:date = date.substr(0, 10);
+            @:var corrMonth = parseInt(date.substr(3, 2)-1);
+            @:data.addRows([[new Date(date.substr(-4), corrMonth,date.substr(0, 2)), parseInt(@errG.total)]]);
         }
 
-        var data = google.visualization.arrayToDataTable(dataG);
+        var materialOptions = {
+        chart: {
+            title: 'Average Temperatures and Daylight in Iceland Throughout the Year'
+        },
+        width: 900,
+        height: 500,
+        series: {
+            // Gives each series an axis name that matches the Y-axis below.
+            0: {axis: 'Temps'},
 
-        // Create a dashboard.
-        var dashboard = new google.visualization.Dashboard(
-            document.getElementById('dashboard_div'));
+        },
+        axes: {
+            // Adds labels to each axis; they don't have to match the axis names.
+            y: {
+            Temps: {label: 'Temps (Celsius)'},
 
-        // Create a range slider, passing some options
-        var donutRangeSlider = new google.visualization.ControlWrapper({
-            'controlType': 'NumberRangeFilter',
-            'containerId': 'filter_div',
-            'options': {
-                'filterColumnLabel': 'Cantidad'
             }
-        });
+        }
+        };
 
-        // Create a pie chart, passing some options
-        var pieChart = new google.visualization.ChartWrapper({
-            'chartType': 'PieChart',
-            'containerId': 'chart_div',
-            'options': {
-                'width': 300,
-                'height': 300,
-                'pieSliceText': 'value',
-                'legend': 'right'
-            }
-        });
+        function drawMaterialChart() {
+            var materialChart = new google.charts.Line(chartDiv);
+            materialChart.draw(data, materialOptions);
+        }
 
-        // Establish dependencies, declaring that 'filter' drives 'pieChart',
-        // so that the pie chart will only display entries that are let through
-        // given the chosen slider range.
-        dashboard.bind(donutRangeSlider, pieChart);
-
-        // Draw the dashboard.
-        dashboard.draw(data);
+        drawMaterialChart();
     }
 </script>
 <!-- Grafica -->
+<div>
 
-<h2>Graficas</h2>
-
-<div id="dashboard_div">
-    <!--Divs that will hold each control and chart-->
-    <div id="filter_div"></div>
+    <h2>Graficas</h2>
     <div id="chart_div"></div>
-</div>
+</div>>
+
+
+
+
 <div class="table-responsive">
     <table class="table">
         <tr class="thead-light">

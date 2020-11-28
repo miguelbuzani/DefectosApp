@@ -105,7 +105,7 @@ namespace Sistema_de_Errores.Controllers
 
             using (SistemadeDefectosEntities db = new SistemadeDefectosEntities())
             {
-                lista = db.Defectos.OrderBy(a => a.sucursal).ToList();
+                lista = db.Defectos.OrderBy(a => a.fecha).ToList();
                 
             }
             var wea = lista.GroupBy(def => def.fecha, def => def.fecha, (baseDateE, dateE) => new
