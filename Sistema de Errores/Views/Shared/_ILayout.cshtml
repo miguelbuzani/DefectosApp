@@ -13,27 +13,54 @@
 </head>
 <body>
     <!--Navbar -->
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color bg-primary">
-        <a class="navbar-brand" href="/Home/Errores">Incidentes de Calidad</a>
-        <a class="navbar-brand" href="/Home/Graficas">Graficas</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
-                aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand text-primary mb-0 h2" href="#">FIGAA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i> Profile
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Errores">
+                        Defectos
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                        <a class="dropdown-item">Log out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Graficas">Graficas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Ver por</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sucursal
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/Home/Nuevo">Action</a>
                     </div>
                 </li>
             </ul>
+
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
+                    </form>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Profile: 
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/Home/Index">Salir</a>
+                    </div>
+                </li>
+            </ul>
+
         </div>
     </nav>
     <!--/.Navbar -->
@@ -41,9 +68,12 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year</p>
-        </footer>
+        <div class="text-center">
+            <footer>
+                <p>miguelbuzani &copy; @DateTime.Now.Year</p>
+            </footer>
+        </div>
+       
     </div>
 
     @Scripts.Render("~/bundles/jquery")

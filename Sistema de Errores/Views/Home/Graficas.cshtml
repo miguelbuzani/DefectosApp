@@ -42,8 +42,8 @@
         var chartDiv = document.getElementById('chart_div');
 
         var data = new google.visualization.DataTable();
-        data.addColumn('date', 'Month');
-        data.addColumn('number', "Average Temperature");
+        data.addColumn('date', 'Mes-Dia');
+        data.addColumn('number', "Defectos publicados");
 
         @foreach(var errG in Model)
         {
@@ -55,19 +55,19 @@
 
         var materialOptions = {
         chart: {
-            title: 'Average Temperatures and Daylight in Iceland Throughout the Year'
+            title: 'Cantidad de defectos diarios'
         },
         width: 900,
         height: 500,
         series: {
             // Gives each series an axis name that matches the Y-axis below.
-            0: {axis: 'Temps'},
+            0: {axis: 'Defectos'},
 
         },
         axes: {
             // Adds labels to each axis; they don't have to match the axis names.
             y: {
-            Temps: {label: 'Temps (Celsius)'},
+            Temps: {label: 'Defectos'},
 
             }
         }
@@ -86,10 +86,9 @@
 
     <h2>Graficas</h2>
     <div id="chart_div"></div>
-</div>>
+</div>
 
-
-
+<hr />
 
 <div class="table-responsive">
     <table class="table">

@@ -11,23 +11,15 @@ namespace Sistema_de_Errores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Defectos
     {
         public int id { get; set; }
-
-        [Required]
-        [Display(Name = "FigaaSucursal")]
         public string sucursal { get; set; }
-        [Required]
-        [Display(Name = "Supervisor")]
         public string supervisor { get; set; }
-        [Required]
-        [Display(Name = "Categoria de Defecto")]
         public string categoria { get; set; }
-        public Nullable<System.DateTime> fechaHora { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<System.TimeSpan> hora { get; set; }
+        public System.DateTime fechaHora { get; set; }
+        public System.DateTime fecha { get; set; }
+        public System.TimeSpan hora { get; set; }
     }
 }

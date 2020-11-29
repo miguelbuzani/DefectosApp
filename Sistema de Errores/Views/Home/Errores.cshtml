@@ -1,6 +1,7 @@
 ﻿@model List<Sistema_de_Errores.Models.Defectos>
 @{
     ViewBag.Title = "Errores";
+    string[] Months = {"Enero","Febrero","Marzo","Abril","Mayo","Junion","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
 }
 
 <h2>Errores</h2>
@@ -23,8 +24,8 @@
                 <th>@defecto.sucursal</th>
                 <th>@defecto.supervisor</th>
                 <th>@defecto.categoria</th>
-                <th>@defecto.fecha</th>
-                <th>@defecto.hora</th>
+                <th>@defecto.fecha.Date.ToString("d")</th>
+                <th>@defecto.hora.ToString(@"hh\:mm\:ss")</th>
             </tr>
         }
 

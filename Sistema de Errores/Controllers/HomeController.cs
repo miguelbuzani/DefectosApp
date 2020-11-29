@@ -22,6 +22,8 @@ namespace Sistema_de_Errores.Controllers
             {
                 var user = db.Users.FirstOrDefault(a => a.name == User && a.pass == Pass);
 
+                
+
                 if (user != null)
                 {
                     Session["Users"] = user;
@@ -41,7 +43,8 @@ namespace Sistema_de_Errores.Controllers
             List<Defectos> lista = new List<Defectos>();
             using (SistemadeDefectosEntities db = new SistemadeDefectosEntities())
             {
-                 lista = db.Defectos.OrderBy(a =>a.sucursal).ToList();
+                lista = db.Defectos.OrderBy(a =>a.sucursal).ToList();
+                
             }
 
             return View(lista);
